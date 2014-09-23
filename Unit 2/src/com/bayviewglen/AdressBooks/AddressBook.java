@@ -22,14 +22,12 @@ public class AddressBook {
 		}
 	}
 
-	public Contact search(String lastName , String firstName){
+	public void search(String name){
 		for(Contact x: AddressBook){
-			if(x.getFirstName().equals(firstName) && x.getLastName().equals(lastName))
-				return x;
+			if(x.getFirstName().equals(name) || x.getLastName().equals(name))
+				x.displayContact();
 		}
-		System.out.println("Nothing was found, null shall be returned");
-		return null;
-
+		System.out.println("Nothing was found");
 	}
 
 	public void search(Contact toBeSearched){

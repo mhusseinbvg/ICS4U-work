@@ -9,11 +9,11 @@ public class AddressBook {
 		AddressBook = new ArrayList<Contact>();
 	}
 
-	public void addAdress(Contact toBeAdded){
+	public void addAddress(Contact toBeAdded){
 		AddressBook.add(toBeAdded);
 	}
 
-	public void removeAdress(Contact toBeRemoved){
+	public void delete(Contact toBeRemoved){
 		for(int i = 0; i < AddressBook.size(); ++i){
 			if(AddressBook.get(i).equals(toBeRemoved)){
 				AddressBook.remove(i);
@@ -30,13 +30,14 @@ public class AddressBook {
 		System.out.println("Nothing was found");
 	}
 
-	public void search(Contact toBeSearched){
+	public void searchNum(String number){
 		for(Contact x: AddressBook){
-			if(x.equals(toBeSearched))
+			if(x.getPhone().equals(number))
 				x.displayContact();;
 		}
 		System.out.println("Nothing was found");
 	}
+	
 
 	public void displayAll(){
 		for(int i = 0; i < AddressBook.size(); ++i){

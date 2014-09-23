@@ -40,4 +40,7 @@ public class Contact {
 	public void changePhone(String phone){
 		this.phone = phone;
 	}
+	public void displayContact(){
+		System.out.println(lname + ", " + fname + ": " + phone);
+	}
 }

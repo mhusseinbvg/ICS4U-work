@@ -33,7 +33,7 @@ public class AddressBook {
 	public void searchNum(String number){
 		for(Contact x: AddressBook){
 			if(x.getPhone().equals(number))
-				x.displayContact();;
+				x.displayContact();
 		}
 		System.out.println("Nothing was found");
 	}

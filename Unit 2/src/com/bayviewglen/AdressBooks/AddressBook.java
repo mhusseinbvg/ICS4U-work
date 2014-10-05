@@ -9,8 +9,12 @@ public class AddressBook {
 		AddressBook = new ArrayList<Contact>();
 	}
 
-	public void addAddress(Contact toBeAdded){
+	public void addContact(Contact toBeAdded){
 		AddressBook.add(toBeAdded);
+	}
+	
+	public void removeAll(){
+		AddressBook.clear();
 	}
 
 	public void delete(Contact toBeRemoved){
@@ -22,20 +26,26 @@ public class AddressBook {
 		}
 	}
 
-	public void search(String name){
+	public Contact search(String name){
 		for(Contact x: AddressBook){
-			if(x.getFirstName().equals(name) || x.getLastName().equals(name))
+			if(x.getFirstName().equals(name) || x.getLastName().equals(name)){
 				x.displayContact();
+				return x;
+			}
+			
 		}
 		System.out.println("Nothing was found");
+		return null;
 	}
 
-	public void searchNum(String number){
+	public Contact searchNum(String number){
 		for(Contact x: AddressBook){
 			if(x.getPhone().equals(number))
 				x.displayContact();
+				return x;
 		}
 		System.out.println("Nothing was found");
+		return null;
 	}
 	
 

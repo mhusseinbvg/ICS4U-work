@@ -1,6 +1,6 @@
 package com.bayviewglen.AdressBookWithHashMap;
 
-public class AdressBookRunner {
+public class AddressBookRunner {
 
 	public static void main(String[] args) {
 		

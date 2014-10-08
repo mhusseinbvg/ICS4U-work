@@ -18,13 +18,14 @@ public class AddressBook {
 	}
 
 	public void delete(Contact toBeRemoved){
-		for(int i = 0; i < AddressBook.size(); ++i){
-			if(AddressBook.get(i).equals(toBeRemoved)){
-				AddressBook.remove(i);
-				break;
-			}
+		String theKey = null;
+		for(String key : AddressBook.keySet()){
+			if(AddressBook.get(key).equals(toBeRemoved))
+				theKey = key;
 		}
+		AddressBook.remove(theKey);
 	}
+
 
 	public Contact search(String name){
 		for(String key: AddressBook.keySet()){

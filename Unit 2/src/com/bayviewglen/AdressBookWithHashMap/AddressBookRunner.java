@@ -2,14 +2,13 @@ package com.bayviewglen.AdressBookWithHashMap;
 
 import java.util.Scanner;
 
-import com.bayviewglen.AdressBooks.AddressBook;
-import com.bayviewglen.AdressBooks.Contact;
+
 
 public class AddressBookRunner {
 
 	public static void main(String[] args) {
 
-		AddressBook mainOne = new AddressBook();
+		AddressBooks mainOne = new AddressBooks();
 		String command;
 		Scanner scanner = new Scanner(System.in);
 
@@ -75,11 +74,11 @@ public class AddressBookRunner {
 
 	}
 
-	private static void displayAll(AddressBook mainOne) {
+	private static void displayAll(AddressBooks mainOne) {
 		mainOne.displayAll();
 	}
 
-	private static void search(AddressBook mainOne) {
+	private static void search(AddressBooks mainOne) {
 		System.out.println("Enter search parameter:");
 		System.out.println("1) By name");
 		System.out.println("2) By Number");
@@ -100,12 +99,12 @@ public class AddressBookRunner {
 		scanner.close();
 	}
 
-	private static void removeAll(AddressBook mainOne) {
+	private static void removeAll(AddressBooks mainOne) {
 		mainOne.removeAll();
 
 	}
 
-	private static void remove(AddressBook mainOne) {
+	private static void remove(AddressBooks mainOne) {
 		System.out.println("Enter search parameter:");
 		System.out.println("1) By name");
 		System.out.println("2) By Number");
@@ -127,7 +126,7 @@ public class AddressBookRunner {
 
 	}
 
-	private static void add(AddressBook mainOne) {
+	private static void add(AddressBooks mainOne) {
 		System.out.println("Please enter contact last name:");
 		Scanner scanner = new Scanner(System.in);
 		String lname = scanner.nextLine();
@@ -135,18 +134,18 @@ public class AddressBookRunner {
 		String fname = scanner.nextLine();
 		System.out.println("Please enter contact number:");
 		String number = scanner.nextLine();
-		Contact contact = new Contact(lname, fname, number);
+		Contacts contact = new Contacts(lname, fname, number);
 		mainOne.addContact(contact);
 		scanner.close();
 	}
 
 	
-	private static void load(AddressBook mainOne) {
+	private static void load(AddressBooks mainOne) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private static void create(AddressBook mainOne) {
+	private static void create(AddressBooks mainOne) {
 		// TODO Auto-generated method stub
 
 	}

@@ -1,17 +1,17 @@
 package com.bayviewglen.AdressBookWithHashMap;
 
-public class Contact {
+public class Contacts {
 	private String lname;
 	private String fname;
 	private String phone;
 
-	public Contact(){
+	public Contacts(){
 		lname = null;
 		fname = null;
 		phone = null;
 	}
 
-	public Contact(String last, String first, String phone){
+	public Contacts(String last, String first, String phone){
 		lname = last;
 		fname = first;
 		this.phone  = phone;

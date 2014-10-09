@@ -2,22 +2,23 @@ package com.bayviewglen.AdressBookWithHashMap;
 
 import java.util.HashMap;
 import java.util.Map;
-public class AddressBook {
-	private Map<String , Contact> AddressBook =  new HashMap<String , Contact>();
 
-	public AddressBook(){
-		AddressBook = new HashMap<String , Contact>();
+public class AddressBooks {
+	private Map<String , Contacts> AddressBook =  new HashMap<String , Contacts>();
+
+	public AddressBooks(){
+		AddressBook = new HashMap<String , Contacts>();
 	}
 
-	public void addContact(Contact toBeAdded){
-		AddressBook.put(toBeAdded.getPhone() ,toBeAdded);
+	public void addContact( Contacts contact){
+		AddressBook.put(contact.getPhone() ,contact);
 	}
 
 	public void removeAll(){
 		AddressBook.clear();
 	}
 
-	public void delete(Contact toBeRemoved){
+	public void delete(Contacts toBeRemoved){
 		String theKey = null;
 		for(String key : AddressBook.keySet()){
 			if(AddressBook.get(key).equals(toBeRemoved))
@@ -27,7 +28,7 @@ public class AddressBook {
 	}
 
 
-	public Contact search(String name){
+	public Contacts search(String name){
 		for(String key: AddressBook.keySet()){
 			if(AddressBook.get(key).getFirstName().equals(name) || AddressBook.get(key).getLastName().equals(name)){
 				AddressBook.get(key).displayContact();
@@ -38,7 +39,7 @@ public class AddressBook {
 		return null;
 	}
 
-	public Contact searchNum(String number){
+	public Contacts searchNum(String number){
 		for(String key: AddressBook.keySet()){
 			if(key.equals(number)){
 				AddressBook.get(key).displayContact();
@@ -58,6 +59,8 @@ public class AddressBook {
 			i ++;
 		}
 	}
+
+	
 }
 
 

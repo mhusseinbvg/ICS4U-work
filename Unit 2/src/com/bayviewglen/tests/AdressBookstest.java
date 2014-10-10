@@ -4,31 +4,38 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class AdressBookstest {
+import com.bayviewglen.AdressBookWithHashMap.AddressBooks;
+import com.bayviewglen.AdressBookWithHashMap.Contacts;
 
+public class AdressBookstest {
+	Contacts test = new Contacts("Hussein" , "Mohamed" , "6473342345");
+	AddressBooks test1 = new AddressBooks();
+	
+	//test1.addContact(test);
+	//need to figure out how to get that contact added to test1
 	@Test
 	public void testAddContact() {
-		fail("Not yet implemented");
+		assertEquals("Should return the conact I added" ,test , test1.searchNum(test.getPhone()));
 	}
 
 	@Test
 	public void testRemoveAll() {
-		fail("Not yet implemented");
+		assertEquals("Should return null", null , test1.searchNum(test.getPhone()));
 	}
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		assertEquals("Should also return null", null , test1.searchNum(test.getPhone()));
 	}
 
 	@Test
 	public void testSearch() {
-		fail("Not yet implemented");
+		assertEquals("Should return the contact at the top" , test , test1.searchNum(test.getPhone()));
 	}
 
 	@Test
 	public void testSearchNum() {
-		fail("Not yet implemented");
+		assertEquals("Not yet implemented", test , test1.search(test.getFirstName()));
 	}
 
 }

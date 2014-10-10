@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class AddressBookRunner {
 
 	public static void main(String[] args) {
-
+		boolean needAnswer = true;
 		AddressBooks mainOne = new AddressBooks();
 		String command;
 		Scanner scanner = new Scanner(System.in);
@@ -17,16 +17,18 @@ public class AddressBookRunner {
 
 		System.out.println("Hello what would you like to do?");
 		System.out.println("1) Load  AdressBook");
-		command = scanner.nextLine();
-		if(command.equals("1"))
-			fileLoaded = load(mainOne, fileLoaded);
-		else{
-			System.out.println("Enter in a valid number command");
-			System.out.println("1) Create new AdressBook");
-			System.out.println("2) Load previous AdressBook");
-			command = scanner.nextLine();// yah i now if yah screw up it doesn't rlly fix the problem but ill fix it sometime
+		command = scanner.nextLine();					
+		while(needAnswer){	
+			if(command.equals("1")){							
+				fileLoaded = load(mainOne, fileLoaded);
+				needAnswer = false;
+			}
+			else{
+				System.out.println("Enter in a valid number command");
+				System.out.println("1) Create new AdressBook");
+			}
 		}
-
+		needAnswer = true;
 		System.out.println("What would you like to do now?");
 		System.out.println("1) Add new contact");
 		System.out.println("2) Remove old contact");
@@ -35,28 +37,36 @@ public class AddressBookRunner {
 		System.out.println("5) Display all conacts");
 		System.out.println("6) Save and quit");
 		command = scanner.nextLine();
-		if(command.equals("1")){
-			add(mainOne);
-		}else if(command.equals("2")){
-			remove(mainOne);
-		}else if(command.equals("3")){
-			removeAll(mainOne);
-		}else if(command.equals("4")){
-			search(mainOne);
-		}else if(command.equals("5")){
-			displayAll(mainOne);
-		}else if(command.equals("6")){
-			quit(fileLoaded , mainOne);
-		}else{
-			System.out.println("Please enter a valid response");
-			System.out.println("What would you like to do now?");
-			System.out.println("1) Add new contact");
-			System.out.println("2) Remove old contact");
-			System.out.println("3) Remove all contacts");
-			System.out.println("4) Search for contact");
-			System.out.println("5) Display all conacts");
-			System.out.println("6) Save and quit");
-			command = scanner.nextLine();
+		while(needAnswer){
+			if(command.equals("1")){
+				add(mainOne);
+				needAnswer = false;
+			}else if(command.equals("2")){
+				remove(mainOne);
+				needAnswer = false;
+			}else if(command.equals("3")){
+				removeAll(mainOne);
+				needAnswer = false;
+			}else if(command.equals("4")){
+				search(mainOne);
+				needAnswer = false;
+			}else if(command.equals("5")){
+				displayAll(mainOne);
+				needAnswer = false;
+			}else if(command.equals("6")){
+				quit(fileLoaded , mainOne);
+				needAnswer = false;
+			}else{
+				System.out.println("Please enter a valid response");
+				System.out.println("What would you like to do now?");
+				System.out.println("1) Add new contact");
+				System.out.println("2) Remove old contact");
+				System.out.println("3) Remove all contacts");
+				System.out.println("4) Search for contact");
+				System.out.println("5) Display all conacts");
+				System.out.println("6) Save and quit");
+				command = scanner.nextLine();
+			}
 		}
 		scanner .close();
 	}
@@ -81,7 +91,7 @@ public class AddressBookRunner {
 			writer.println(mainOne.getMap().get(key).getFirstName());
 			writer.println(mainOne.getMap().get(key).getPhone());
 		}
-		
+
 		writer.close();
 	}
 

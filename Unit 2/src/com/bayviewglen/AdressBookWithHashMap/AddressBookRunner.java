@@ -164,23 +164,26 @@ public class AddressBookRunner {
 	private static String load(AddressBooks mainOne, String fileLoaded) {
 		Scanner scanner = new Scanner(System.in);
 		Scanner fileScanner = null;
+		boolean neddAnswer = true;
 		System.out.println("Which addressBook would you like to load?");
 		System.out.println("1)AddressBook1");
 		System.out.println("2)AddressBook2");
 		System.out.println("3)AddressBook3");
-		String fileToLoad = scanner.nextLine();
-		if(fileToLoad.equals("1")){
-			fileScanner = new Scanner("input/AddressBook1.txt");
-			fileLoaded = "AddressBook1.txt";
-		}else if(fileToLoad.equals("2")){
-			fileScanner = new Scanner("input/AddressBook2.txt");
-			fileLoaded = "AddressBook2.txt";
-		}else if(fileToLoad.equals("3")){
-			fileScanner = new Scanner("input/AddressBook3.txt");
-			fileLoaded = "AddressBook3.txt";
-		}else{
-			System.out.println("Enter a valid number!!!! The system will now end");
-			System.exit(0);
+		while(neddAnswer){
+			String fileToLoad = scanner.nextLine();
+			if(fileToLoad.equals("1")){
+				fileScanner = new Scanner("input/AddressBook1.txt");
+				fileLoaded = "AddressBook1.txt";
+			}else if(fileToLoad.equals("2")){
+				fileScanner = new Scanner("input/AddressBook2.txt");
+				fileLoaded = "AddressBook2.txt";
+			}else if(fileToLoad.equals("3")){
+				fileScanner = new Scanner("input/AddressBook3.txt");
+				fileLoaded = "AddressBook3.txt";
+			}else{
+				System.out.println("Enter a valid number!!!! The system will now end");
+				System.exit(0);
+			}
 		}
 		while(fileScanner.hasNext()){
 			try{
@@ -194,6 +197,7 @@ public class AddressBookRunner {
 				e.printStackTrace();
 			}
 		}
+
 		System.out.println("File has been loaded");
 		scanner.close();
 		fileScanner.close();

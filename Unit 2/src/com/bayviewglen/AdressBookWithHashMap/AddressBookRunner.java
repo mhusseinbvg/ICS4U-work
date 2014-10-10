@@ -1,5 +1,7 @@
 package com.bayviewglen.AdressBookWithHashMap;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 
@@ -11,20 +13,18 @@ public class AddressBookRunner {
 		AddressBooks mainOne = new AddressBooks();
 		String command;
 		Scanner scanner = new Scanner(System.in);
+		String fileLoaded = null;
 
 		System.out.println("Hello what would you like to do?");
-		System.out.println("1) Create new AdressBook");
-		System.out.println("2) Load previous AdressBook");
+		System.out.println("1) Load  AdressBook");
 		command = scanner.nextLine();
 		if(command.equals("1"))
-			create(mainOne);
-		else if(command.equals("2"))
-			load(mainOne);
+			fileLoaded = load(mainOne, fileLoaded);
 		else{
 			System.out.println("Enter in a valid number command");
 			System.out.println("1) Create new AdressBook");
 			System.out.println("2) Load previous AdressBook");
-			command = scanner.nextLine();
+			command = scanner.nextLine();// yah i now if yah screw up it doesn't rlly fix the problem but ill fix it sometime
 		}
 
 		System.out.println("What would you like to do now?");
@@ -46,7 +46,7 @@ public class AddressBookRunner {
 		}else if(command.equals("5")){
 			displayAll(mainOne);
 		}else if(command.equals("6")){
-			quit();
+			quit(fileLoaded , mainOne);
 		}else{
 			System.out.println("Please enter a valid response");
 			System.out.println("What would you like to do now?");
@@ -61,17 +61,28 @@ public class AddressBookRunner {
 		scanner .close();
 	}
 
-	private static void quit() {
+	private static void quit(String fileLoaded , AddressBooks mainOne) {
 		System.out.println("Thanks for using addressBooks. Your changes will now be saved");
 		System.out.println("Progress has been saved hope to see you again");
-		save();
+		try {
+			save(fileLoaded , mainOne);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		System.exit(0);
 
 	}
 
-	private static void save() {
+	private static void save(String fileLoaded, AddressBooks mainOne) throws FileNotFoundException {
 		//I'll figure this one out eventually
-
+		PrintWriter writer = new PrintWriter(fileLoaded);
+		for(String key : mainOne.getMap().keySet()){
+			writer.println(mainOne.getMap().get(key).getLastName());
+			writer.println(mainOne.getMap().get(key).getFirstName());
+			writer.println(mainOne.getMap().get(key).getPhone());
+		}
+		
+		writer.close();
 	}
 
 	private static void displayAll(AddressBooks mainOne) {
@@ -139,16 +150,46 @@ public class AddressBookRunner {
 		scanner.close();
 	}
 
-	
-	private static void load(AddressBooks mainOne) {
-		// TODO Auto-generated method stub
 
+	private static String load(AddressBooks mainOne, String fileLoaded) {
+		Scanner scanner = new Scanner(System.in);
+		Scanner fileScanner = null;
+		System.out.println("Which addressBook would you like to load?");
+		System.out.println("1)AddressBook1");
+		System.out.println("2)AddressBook2");
+		System.out.println("3)AddressBook3");
+		String fileToLoad = scanner.nextLine();
+		if(fileToLoad.equals("1")){
+			fileScanner = new Scanner("input/AddressBook1.txt");
+			fileLoaded = "AddressBook1.txt";
+		}else if(fileToLoad.equals("2")){
+			fileScanner = new Scanner("input/AddressBook2.txt");
+			fileLoaded = "AddressBook2.txt";
+		}else if(fileToLoad.equals("3")){
+			fileScanner = new Scanner("input/AddressBook3.txt");
+			fileLoaded = "AddressBook3.txt";
+		}else{
+			System.out.println("Enter a valid number!!!! The system will now end");
+			System.exit(0);
+		}
+		while(fileScanner.hasNext()){
+			try{
+				fileScanner.nextLine();
+				String tempL = fileScanner.nextLine();
+				String tempF = fileScanner.nextLine();
+				String tempP = fileScanner.nextLine();
+				Contacts temp = new Contacts(tempL, tempF, tempP);
+				mainOne.addContact(temp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		System.out.println("File has been loaded");
+		scanner.close();
+		fileScanner.close();
+		return fileLoaded;
 	}
 
-	private static void create(AddressBooks mainOne) {
-		// TODO Auto-generated method stub
-
-	}
 
 
 

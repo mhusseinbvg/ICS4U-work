@@ -59,6 +59,10 @@ public class AddressBooks {
 			i ++;
 		}
 	}
+	
+	public Map<String, Contacts> getMap(){
+		return AddressBook;
+	}
 
 	
 }
